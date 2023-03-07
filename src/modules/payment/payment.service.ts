@@ -1,11 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable , BadRequestException} from '@nestjs/common';
 import { CreatePaymentDto } from './dto/create-payment.dto';
-import { UpdatePaymentDto } from './dto/update-payment.dto';
+import { UpdatePaymentDto } from './dto/update-payment.dto'; 
 
 @Injectable()
 export class PaymentService {
-  create(createPaymentDto: CreatePaymentDto) {
-    return 'This action adds a new payment';
+  private users = [
+    {
+      email:"abc@gmail.com"
+    },
+
+    {
+      email:"wxy@gmail.com"
+    },
+
+    {
+      email:"xyz@gmail.com"
+    }
+  ]
+  async createPayment(createPaymentDto: CreatePaymentDto) {
+    const { email } = createPaymentDto;
+    const user = this.users.find((user) => user.email === email);
+    if(user){
+      return {
+        status:'success'
+      };
+    }else{
+      throw new BadRequestException();
+    }
+   
   }
 
   findAll() {

@@ -1,1 +1,5 @@
-export class CreatePaymentDto {}
+export class CreatePaymentDto {
+    email:string;
+
+    price:number;
+}

@@ -22,8 +22,9 @@ getPayment(@Req() request:Request , @Res() response:Response){
 }
 
   @Post()
-  create(@Body() createPaymentDto: CreatePaymentDto) {
-    return this.paymentService.create(createPaymentDto);
+ async createPayment(@Body() createPaymentDto: CreatePaymentDto) {
+     const response = this.paymentService.createPayment(createPaymentDto);
+     return response;
   }
 
   @Get()
